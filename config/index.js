@@ -70,6 +70,19 @@ var log_storage_account_key = nconfig.get('LOG_STORAGE_KEY');
 // log enabled
 var log_enabled = (nconfig.get('LOG_ENABLED') || '').toString().toLowerCase() === 'true';
 
+
+// Bot
+//
+// handle name
+var bot_iframe_handle = nconfig.get('BOT_IFRAME_HANDLE');
+//
+// secret
+var bot_iframe_secret = nconfig.get('BOT_IFRAME_SECRET');
+//
+// app Id
+var bot_app_id = nconfig.get('BOT_APP_ID');
+
+
 var config = {
     auth: {
         google: {
@@ -118,6 +131,13 @@ var config = {
       },
       apps: {
         console: { name: 'console', desc: 'the command line console web app' }
+      },
+      bot: {
+        appId: bot_app_id,
+        webchat: {
+            handle: bot_iframe_handle,
+            secret: bot_iframe_secret
+        }
       }
 };
 
