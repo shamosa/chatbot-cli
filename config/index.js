@@ -81,7 +81,9 @@ var bot_iframe_secret = nconfig.get('BOT_IFRAME_SECRET');
 //
 // app Id
 var bot_app_id = nconfig.get('BOT_APP_ID');
-
+//
+// bot endpoint URL
+var botEndpointUrl = nconfig.get('BOT_SERVICE_URL');
 
 var config = {
     auth: {
@@ -137,7 +139,8 @@ var config = {
         webchat: {
             handle: bot_iframe_handle,
             secret: bot_iframe_secret
-        }
+        },
+        endpoint: botEndpointUrl
       }
 };
 

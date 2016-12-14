@@ -4,6 +4,7 @@ var api = { console: { autoLoad: true} };
 var express = require('express'),
   router = api.router = express.Router(),
   docRouter = require('docrouter').docRouter,
+  request = require('request'),
   users = require('../auth/users'),
   config = require('../config');
 
@@ -50,6 +51,31 @@ docRouter(router, "/api/bot", function (router) {
           "doc": "height for the bot window",
           "style": "query"
         }
+      },
+      response: { representations: ['application/json'] }
+    }
+  );
+
+
+
+  router.post('/reload', function (req, res) { 
+
+    var url = config.bot.endpoint + '/reload';
+    request(url, (err, result, body) => {
+        if (err) return res.json({ err: err.message });
+        return res.json({
+            status: result.statusMessage,
+            message: body
+        });
+    });
+  },
+  {
+      id: 'bot_reload',
+      name: 'reload',
+      usage: 'bot reload',
+      example: 'bot reload',
+      doc: 'reloads configuration',
+      params: {
       },
       response: { representations: ['application/json'] }
     }
